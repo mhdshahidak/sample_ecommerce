@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{request.session.seller}}
+    <p>Add product-</p><br>
+    <a href="{% url 'seller:addproduct' %}">add here</a>
+    <br>
+    <p>view product-</p><br>
+    <a href="{% url 'seller:viewproduct' %}">view here</a><br>
+    <p>view order-</p><br>
+    <a href="{% url 'seller:viewproduct' %}">view here</a><br>
+    
+    <p>change password-</p><br>
+    <a href="{% url 'seller:changepassword' %}">view here</a><br>
+</body>
+</html>
