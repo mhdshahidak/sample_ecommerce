@@ -34,7 +34,7 @@ def seller_reg(request):
         if not email_exist:
             new_seller = Seller(seller_name=name, email_id=email, acc_holder=acc_holder,
                                 acc_no=acc_no, ifsc=ifsc, phone_no=phone_no, password=password)
-            new_seller.save() #insert into table tablename
+            new_seller.save()  # insert into table tablename
             msg = "registerd successfully"
 
         else:
@@ -63,6 +63,7 @@ def customer_reg(request):
         else:
             msg = "email already exist"
 
+    # {'msg': msg, } for massage passing
     return render(request, 'customer_reg.html', {'msg': msg, })
 
 # customer resitration
@@ -80,6 +81,7 @@ def customer_login(request):
         if customer_exist:
             customer_data = Customer.objects.get(
                 email_id=email, password=password)
+            # passing customer id as session
             request.session['customer'] = customer_data.cust_id
             return redirect('customer:customerhome')
 
@@ -101,6 +103,7 @@ def seller_login(request):
         if seller_exist:
             seller_data = Seller.objects.get(email_id=email, password=password)
             request.session['seller'] = seller_data.seller_id
+            # redirecting to seller home page  # app name : url name
             return redirect('seller:sellerhome')
 
         else:

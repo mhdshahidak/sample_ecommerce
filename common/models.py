@@ -5,13 +5,13 @@ from django.db import models
 
 class Customer(models.Model):
 
-    cust_id = models.AutoField(primary_key=True)
+    cust_id = models.AutoField(primary_key=True) # setting customer id as primary key (if it not enterde it will generate automaticly) 
     cust_name = models.CharField(max_length=20)
     email_id = models.CharField(max_length=30)
     phone_no = models.CharField(max_length=10)
     password = models.CharField(max_length=30)
 
-    class Meta:  # to set table name
+    class Meta:  # to set table name 
         db_table = "customer"
 
 

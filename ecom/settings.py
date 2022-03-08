@@ -60,7 +60,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR/'common/templates/common',
+            BASE_DIR/'common/templates/common', #for template registering
             BASE_DIR/'customer/templates/customer',
             BASE_DIR/'seller/templates/seller',
             BASE_DIR/'owner/templates/owner',
@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE' : 'django.db.backends.postgresql_psycopg2',
+        'ENGINE' : 'django.db.backends.postgresql_psycopg2',  # install psycopg2 //requirements
         'NAME' : 'ecome_db',
         'USER' : 'postgres',
         'PASSWORD' : 'root',
@@ -133,9 +133,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/' #install pillow(pip install pillow) for media folder "for image loading like static"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #n
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #setting media root
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
