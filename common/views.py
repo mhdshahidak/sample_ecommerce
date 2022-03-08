@@ -34,7 +34,7 @@ def seller_reg(request):
         if not email_exist:
             new_seller = Seller(seller_name=name, email_id=email, acc_holder=acc_holder,
                                 acc_no=acc_no, ifsc=ifsc, phone_no=phone_no, password=password)
-            new_seller.save()
+            new_seller.save() #insert into table tablename
             msg = "registerd successfully"
 
         else:
@@ -91,7 +91,7 @@ def customer_login(request):
 
 
 def seller_login(request):
-
+    msg = ""
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
