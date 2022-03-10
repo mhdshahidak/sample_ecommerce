@@ -21,13 +21,27 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Profile</th>
+                            <th scope="col"></th>
                             <th scope="col">Product Name</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">seller name</th>
+                            <th scope="col">price</th>
                         </tr>
                     </thead>
-
+                    {% for product in cartproduct %}
+                    <tr>
+                        <td>
+                            <img src="{{product.product_id.product_image.url}}" height="150px" width="250px">
+                        </td>
+                        <td>{{product.product_id.product_name | capfirst}}
+                        </td>
+                        <td>
+                            {{product.product_id.seller_id.seller_name | capfirst}}
+                        </td>
+                        <td>
+                            Rs.{{product.product_id.price}}
+                        </td>
+                        </tr>
+                        {% endfor %}
 
                 </table>
                 <button style="margin-top: 400px;margin-left: 600px;">Checkout</button>

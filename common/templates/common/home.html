@@ -14,14 +14,15 @@
 
 </head>
 
-<body>
+<body class="bg-secondary">
     <div class="container-fluid">
-        <div class="row">
-
-            <p>click here-</p>
-            <a href="{% url 'common:sellerreg' %}">seller registration</a><br><br><br>
-            <p>customer click here-</p>
-            <a href="{% url 'common:customerreg' %}">customer registration</a>
+        <div class="row" style="text-align: center;line-height: 50px; margin-top: 300px;">
+            <div class="col-lg-12">
+           
+            <a class="btn btn-success btn-lg" href="{% url 'common:sellerreg' %}">seller registration</a><br><br><br>
+          
+            <a  class="btn btn-success btn-lg"href="{% url 'common:customerreg' %}">customer registration</a>
+        </div>
         </div>
 
     </div>

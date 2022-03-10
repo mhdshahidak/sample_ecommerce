@@ -29,7 +29,7 @@ def seller_reg(request):
 
         # to check whether it is exist or not
 
-        email_exist = Seller.objects.filter(email_id=email).exists()
+        email_exist = Seller.objects.filter(email_id=email).exists()  # filter() multiple data according to the where condition select * from table where pricxe =5000
 
         if not email_exist:
             new_seller = Seller(seller_name=name, email_id=email, acc_holder=acc_holder,
@@ -81,7 +81,7 @@ def customer_login(request):
         if customer_exist:
             customer_data = Customer.objects.get(
                 email_id=email, password=password)
-            # passing customer id as session
+            # passing customer id as session value
             request.session['customer'] = customer_data.cust_id
             return redirect('customer:customerhome')
 

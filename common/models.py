@@ -15,7 +15,7 @@ class Customer(models.Model):
         db_table = "customer"
 
 
-class Seller(models.Model):
+class Seller(models.Model):  #inherit from Model class
 
     seller_id = models.AutoField(primary_key=True)
     seller_name = models.CharField(max_length=20)

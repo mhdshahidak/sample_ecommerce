@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from common.models import Customer
 
 from seller import views
 
@@ -19,3 +20,6 @@ def customer(request):
 
 def sellers(request):
     return render(request, 'sellers.html')
+
+
+

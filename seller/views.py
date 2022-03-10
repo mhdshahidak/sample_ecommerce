@@ -1,10 +1,11 @@
+import email
 from django.shortcuts import render
 from common.models import Seller
 
 from seller.models import Products
 
 
-# Create your views here.
+# Create your views here
 def seller_login(request):
     return render(request, 'login.html')
 
@@ -21,6 +22,7 @@ def add_product(request):
         description = request.POST['pdescription']
         qty = request.POST['pquantity']
         image = request.FILES['pimg']
+        # taking row(object) from table
         seller = Seller.objects.get(seller_id=request.session['seller'])
 
         new_product = Products(product_name=product_name, price=price,
@@ -34,7 +36,7 @@ def view_product(request):
 
     seller_product = Products.objects.filter(
         seller_id=request.session['seller'])
-    seller = Seller.objects.get(seller_id=request.session['seller'])
+    seller = Seller.objects.get(seller_id=request.session['seller'])  # ///
     return render(request, 'view_products.html', {'products': seller_product, 'seller': seller})
 
 
@@ -43,4 +45,25 @@ def view_order(request):
 
 
 def change_password(request):
-    return render(request, 'change_password.html')
+    msg = ""
+    if request.method=='POST':
+        password = request.POST['password']
+        newpassword = request.POST['newpassword']
+        cpassword = request.POST['cpassword']
+
+        seller_data = Seller.objects.get(seller_id=request.session['seller'])
+        if password==seller_data.password:   #first 'password': variable that gets old password & second password is model proparty
+            
+            if newpassword==cpassword:
+                seller_data.password=newpassword  # updation
+                seller_data.save()
+                msg="successfully updated"
+            else:
+                msg="password mismatch"
+        else:
+            msg="password incorrect"
+
+
+    
+
+    return render(request, 'change_password.html',{'msg':msg,})

@@ -7,16 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    {{request.session.seller}}
-    <p>Add product-</p><br>
-    <a href="{% url 'seller:addproduct' %}">add here</a>
-    <br>
-    <p>view product-</p><br>
-    <a href="{% url 'seller:viewproduct' %}">view here</a><br>
-    <p>view order-</p><br>
-    <a href="{% url 'seller:viewproduct' %}">view here</a><br>
+    {{request.session.seller}}<br><br><br><br>
+    {% comment %} <p>Add product-</p><br> {% endcomment %}
+    <a href="{% url 'seller:addproduct' %}">Add product here</a>
+    <br> <br><br><br>
+    {% comment %} <p>view product-</p><br> {% endcomment %}
+    <a href="{% url 'seller:viewproduct' %}">view product </a><br><br><br><br>
+    {% comment %} <p>view order-</p><br> {% endcomment %}
+    <a href="{% url 'seller:viewproduct' %}">view order</a><br><br><br><br>
     
-    <p>change password-</p><br>
-    <a href="{% url 'seller:changepassword' %}">view here</a><br>
+    {% comment %} <p>change password-</p><br> {% endcomment %}
+    <a href="{% url 'seller:changepassword' %}">change password</a><br><br><br><br>
 </body>
 </html>
