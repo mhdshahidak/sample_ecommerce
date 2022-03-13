@@ -1,6 +1,7 @@
-import email
+from email import message
 from django.shortcuts import render
 from common.models import Seller
+from customer.models import Order, Cart
 
 from seller.models import Products
 
@@ -41,29 +42,31 @@ def view_product(request):
 
 
 def view_order(request):
-    return render(request, 'view_order.html')
+
+    orders = Order.objects.filter(
+        seller_id=request.session['seller'], status="ordered")
+
+    return render(request, 'view_order.html', {'orders': orders, })
 
 
 def change_password(request):
     msg = ""
-    if request.method=='POST':
+    if request.method == 'POST':
         password = request.POST['password']
         newpassword = request.POST['newpassword']
         cpassword = request.POST['cpassword']
 
         seller_data = Seller.objects.get(seller_id=request.session['seller'])
-        if password==seller_data.password:   #first 'password': variable that gets old password & second password is model proparty
-            
-            if newpassword==cpassword:
-                seller_data.password=newpassword  # updation
+        # first 'password': variable that gets old password & second password is model proparty
+        if password == seller_data.password:
+
+            if newpassword == cpassword:
+                seller_data.password = newpassword  # updation
                 seller_data.save()
-                msg="successfully updated"
+                msg = "successfully updated"
             else:
-                msg="password mismatch"
+                msg = "password mismatch"
         else:
-            msg="password incorrect"
+            msg = "password incorrect"
 
-
-    
-
-    return render(request, 'change_password.html',{'msg':msg,})
+    return render(request, 'change_password.html', {'msg': msg, })

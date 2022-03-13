@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from common.models import Customer
+# from common.models import Customer
 
 from seller import views
 
-# Create your views here.
+
 
 
 def owner_home(request):

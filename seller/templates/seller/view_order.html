@@ -15,7 +15,7 @@
 
                 <table>
                     <tr>
-                        <th>Sl.No</th>
+                        {% comment %} <th>Sl.No</th> {% endcomment %}
                         <th>Customer name</th>
                         <th>Address</th>
                         <th>Product Name</th>
@@ -24,6 +24,12 @@
                         <th>Order date</th>
                         <th>Status</th>
                     </tr>
+                    {% comment %} {% for sellerorder in orders %}
+                    <tr>
+                    <td>{{sellerorder.customer_id.customer_name}}</td>
+                    <td>{{sellerorder.customer_id.customer_name}}</td>
+                    </tr>
+                    {% end for %} {% endcomment %}
                     
                 </table>
 

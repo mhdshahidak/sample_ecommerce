@@ -1,6 +1,8 @@
-import email
+from email import message
 from webbrowser import get
 from django.shortcuts import redirect, render
+
+from common.forms import CustomerRegForm
 from . models import *
 
 # Create your views here.
@@ -47,6 +49,7 @@ def seller_reg(request):
 
 def customer_reg(request):
     msg = ""
+    form = CustomerRegForm()
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
@@ -64,7 +67,7 @@ def customer_reg(request):
             msg = "email already exist"
 
     # {'msg': msg, } for massage passing
-    return render(request, 'customer_reg.html', {'msg': msg, })
+    return render(request, 'customer_reg.html', {'msg': msg,'form':form })
 
 # customer resitration
 
