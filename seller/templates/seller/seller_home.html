@@ -10,6 +10,7 @@
 
 </head>
 <body>
+
 <center>
     {{request.session.seller}}<br><br><br><br>
   
@@ -22,7 +23,7 @@
     
 
     <a href="{% url 'seller:changepassword' %}" class="btn btn-success btn-sm ">change password</a><br><br><br><br>
-    <a href="{% url 'seller:logout' %}" class="btn btn-warning btn-sm ">view order</a><br><br><br><br>
+    <a href="{% url 'seller:logout' %}" class="btn btn-warning btn-sm ">logout</a><br><br><br><br>
    </center> 
 </body>
 </html>

@@ -3,19 +3,22 @@ from email import message
 from django.shortcuts import render
 from common.models import Seller
 from customer.models import Order, Cart
+from ecom.decorators import auth_seller
 
 from seller.models import Products
 
 
 # Create your views here
-def seller_login(request):
-    return render(request, 'login.html')
+# def seller_login(request):
+#     return render(request, 'login.html')
 
-
+@auth_seller
 def seller_home(request):
-    return render(request, 'seller_home.html')
+    seller = Seller.objects.get(seller_id=request.session['seller'])
+    products = Products.objects.filter(seller_id=request.session['seller'])
+    return render(request, 'seller_home.html',{'seller':seller, 'product':products})
 
-
+@auth_seller
 def add_product(request):
     msg = ""
     if request.method == 'POST':
@@ -33,7 +36,7 @@ def add_product(request):
         msg = "product addedd succusfully"
     return render(request, 'add_product.html', {'msg': msg})
 
-
+@auth_seller
 def view_product(request):
 
     seller_product = Products.objects.filter(
@@ -41,7 +44,7 @@ def view_product(request):
     seller = Seller.objects.get(seller_id=request.session['seller'])  # ///
     return render(request, 'view_products.html', {'products': seller_product, 'seller': seller})
 
-
+@auth_seller
 def view_order(request):
 
     orders = Order.objects.filter(
@@ -49,7 +52,7 @@ def view_order(request):
 
     return render(request, 'view_order.html', {'orders': orders, })
 
-
+@auth_seller
 def change_password(request):
     msg = ""
     if request.method == 'POST':
@@ -72,7 +75,7 @@ def change_password(request):
 
     return render(request, 'change_password.html', {'msg': msg, })
 
-
+@auth_seller
 def logout(request):
     del request.session['seller']
     request.session.flush()

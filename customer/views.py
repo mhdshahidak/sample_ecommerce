@@ -16,17 +16,18 @@ def customer_home(request):
 
     
     customer = Customer.objects.get(cust_id=request.session['customer'])
+    product = Products.objects.all()
         
-    return redirect('common:customerlogin')
+    return render(request,'customer_home.html', {'customer':customer, 'product':product})
 
 @auth_customer
 def view_cart(request):
 
     cart_products = Cart.objects.filter(
         customer_id=request.session['customer'])
-    return render(request, 'view_cart.html', {'cartproduct': cart_products})
+    return render(request, 'view_cart.html', {'cartproduct': cart_products,})
 
-
+@auth_customer
 def order(request, pid):
     msg = ""
     product = Products.objects.get(id=pid)
@@ -53,13 +54,13 @@ def order(request, pid):
 
     return render(request, 'order.html', {'msg': msg, 'product': product})
 
-
+@auth_customer
 def my_order(request):
 
     orders = Order.objects.filter(customer_id=request.session['customer'])
     return render(request, 'my_order.html',{'orders':orders,})
 
-
+@auth_customer
 def change_password(request):
     msg = ""
     if request.method == 'POST':
@@ -82,7 +83,7 @@ def change_password(request):
 
     return render(request, 'change_password.html', {'msg': msg, })
 
-
+@auth_customer
 def add_to_cart(request, id):
 
     # first id from produst table second from id passing
@@ -98,7 +99,7 @@ def add_to_cart(request, id):
 
     return redirect('customer:customerhome')
 
-
+@auth_customer
 def logout(request):
     del request.session['customer']
     request.session.flush()
