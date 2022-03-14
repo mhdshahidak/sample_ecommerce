@@ -1,4 +1,4 @@
-from django.urls import redirect
+from django.shortcuts import redirect
 
 def auth_customer(func):
     def wrap(request, *args, **kwargs):

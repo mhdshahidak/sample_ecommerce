@@ -5,7 +5,6 @@ from customer.models import Order
 from customer.models import Cart
 from ecom.decorators import auth_customer
 
-from owner.views import customer
 from seller.models import Products
 
 from django.conf import settings
@@ -59,9 +58,6 @@ def my_order(request):
 
     orders = Order.objects.filter(customer_id=request.session['customer'])
     return render(request, 'my_order.html',{'orders':orders,})
-
-# def logout(request):
-#     return render(request,'logut.html')
 
 
 def change_password(request):

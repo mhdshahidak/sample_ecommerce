@@ -2,7 +2,6 @@ from distutils.command.upload import upload
 from django.db import models
 
 from common.models import Seller
-from customer.models import Order
 
 
 class Products(models.Model):

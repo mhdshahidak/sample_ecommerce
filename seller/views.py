@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from email import message
 from django.shortcuts import render
 from common.models import Seller
@@ -70,3 +71,9 @@ def change_password(request):
             msg = "password incorrect"
 
     return render(request, 'change_password.html', {'msg': msg, })
+
+
+def logout(request):
+    del request.session['seller']
+    request.session.flush()
+    return redirect('common:sellerlogin')
