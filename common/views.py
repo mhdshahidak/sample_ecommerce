@@ -33,7 +33,8 @@ def seller_reg(request):
 
         # to check whether it is exist or not
 
-        email_exist = Seller.objects.filter(email_id=email).exists()  # filter() multiple data according to the where condition select * from table where pricxe =5000
+        # filter() multiple data according to the where condition select * from table where pricxe =5000
+        email_exist = Seller.objects.filter(email_id=email).exists()
 
         if not email_exist:
             new_seller = Seller(seller_name=name, email_id=email, acc_holder=acc_holder,
@@ -53,7 +54,8 @@ def customer_reg(request):
     msg = ""
     form = CustomerRegForm()
     if request.method == 'POST':
-        form=CustomerRegForm(request.POST) #,request.files  if files need to upload
+        # ,request.files  if files need to upload
+        form = CustomerRegForm(request.POST)
         if form.is_valid():
             name = request.POST['cust_name']
             email = request.POST['email_id']
@@ -65,7 +67,7 @@ def customer_reg(request):
                 new_customer = Customer(
                     cust_name=name, email_id=email, phone_no=phone_no, password=password)
                 new_customer.save()
-                form=CustomerRegForm()
+                form = CustomerRegForm()
                 msg = 'Registered succesfully'
 
             else:
@@ -75,7 +77,7 @@ def customer_reg(request):
             print(form.errors)
 
     # {'msg': msg, } for massage passing
-    return render(request, 'customer_reg.html', {'msg': msg,'form':form })
+    return render(request, 'customer_reg.html', {'msg': msg, 'form': form})
 
 # customer resitration
 
@@ -125,22 +127,21 @@ def seller_login(request):
 
 
 def check_seller_email(request):
-    email = request.GET['email']    #get method
+    email = request.GET['email']  # get method
     seller_exist = Seller.objects.filter(
-            email_id=email).exists()
+        email_id=email).exists()
     if seller_exist:
-        status=True
+        status = True
     else:
         status = False
-    return JsonResponse({'status':status,'email':email})
-
+    return JsonResponse({'status': status, 'email': email})
 
 
 def check_customer_email(request):
-    email = request.POST['email']         #post method
+    email = request.POST['email']  # post method
     customer_exists = Customer.objects.filter(email_id=email).exists()
     if customer_exists:
         status = True
     else:
         status = False
-    return JsonResponse({'status':status,'email':email})
+    return JsonResponse({'status': status, 'email': email})

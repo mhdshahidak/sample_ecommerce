@@ -42,10 +42,10 @@
                                         <a class="nav-link active" href="{% url 'customer:myorder' %}">My Order</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="{% url 'customer:logout'%}">Logout</a>
+                                        <a class="nav-link active" href="{% url 'customer:logout' %}">Logout</a>
                                     </li>
                                 </ul>
-                                <a href="{% url 'customer:changepassword'%}">Change password</a>
+                                <a href="{% url 'customer:changepassword' %}">Change password</a>
                             </div>
                             <p style="float: right; margin-right: 15px;">
                                 <b>Hai {{ customer.cust_name | capfirst }}</b>
@@ -56,38 +56,36 @@
             </div>
             <div class="row">
                 {% for p in product %}
-                
                     <div class="col-lg-4">
-                      <form action="{% url 'customer:addtocart' p.id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="card"
-                             style="width: 20rem;
-                                    margin-left: 60px;
-                                    margin-top: 30px;">
-                            <img src="{{ p.product_image.url }}"
-                                 class="card-img-top"
-                                 alt="..."
-                                 style="height: 250px;
-                                        width: 310px;">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ p.product_name }}</h5>
-                                <p class="card-text">
-                                    seller name: {{ p.seller_id.seller_name }}  
-                                </p> 
-                                 {% comment %} foreign key.column name  {% endcomment %}
-                                <p class="card-text">
-                                    price: {{ p.price }}
-                                </p>
-                                <p class="card-text">
-                                    more details: {{ p.description }}
-                                </p>
-                                <button class="btn btn-primary">BUY NOW</button>
-                                <button class="btn btn-warning">ADD TO CART</button>
+                        <form action="{% url 'customer:addtocart' p.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="card"
+                                 style="width: 20rem;
+                                        margin-left: 60px;
+                                        margin-top: 30px;">
+                                <img src="{{ p.product_image.url }}"
+                                     class="card-img-top"
+                                     alt="..."
+                                     style="height: 250px;
+                                            width: 310px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ p.product_name }}</h5>
+                                    <p class="card-text">
+                                        seller name: {{ p.seller_id.seller_name }}
+                                    </p>
+                                    {% comment %} foreign key.column name  {% endcomment %}
+                                    <p class="card-text">
+                                        price: {{ p.price }}
+                                    </p>
+                                    <p class="card-text">
+                                        more details: {{ p.description }}
+                                    </p>
+                                    <button class="btn btn-primary">BUY NOW</button>
+                                    <button class="btn btn-warning">ADD TO CART</button>
+                                </div>
                             </div>
-                        </div>
-                      </form>
+                        </form>
                     </div>
-                 
                 {% endfor %}
             </div>
         </div>

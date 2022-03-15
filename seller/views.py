@@ -16,7 +16,8 @@ from seller.models import Products
 def seller_home(request):
     seller = Seller.objects.get(seller_id=request.session['seller'])
     products = Products.objects.filter(seller_id=request.session['seller'])
-    return render(request, 'seller_home.html',{'seller':seller, 'product':products})
+    return render(request, 'seller_home.html', {'seller': seller, 'product': products})
+
 
 @auth_seller
 def add_product(request):
@@ -36,6 +37,7 @@ def add_product(request):
         msg = "product addedd succusfully"
     return render(request, 'add_product.html', {'msg': msg})
 
+
 @auth_seller
 def view_product(request):
 
@@ -44,6 +46,7 @@ def view_product(request):
     seller = Seller.objects.get(seller_id=request.session['seller'])  # ///
     return render(request, 'view_products.html', {'products': seller_product, 'seller': seller})
 
+
 @auth_seller
 def view_order(request):
 
@@ -51,6 +54,7 @@ def view_order(request):
         seller_id=request.session['seller'], status="ordered")
 
     return render(request, 'view_order.html', {'orders': orders, })
+
 
 @auth_seller
 def change_password(request):
@@ -74,6 +78,7 @@ def change_password(request):
             msg = "password incorrect"
 
     return render(request, 'change_password.html', {'msg': msg, })
+
 
 @auth_seller
 def logout(request):

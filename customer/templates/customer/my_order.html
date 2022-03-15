@@ -28,17 +28,17 @@
                                 <th>Status</th>
                             </tr>
                             {% for o in orders %}
-                            <tr>
-                            <td><img src="{{o.product_id.product_image.url}}" height="250px"></td>
-                            <td>{{o.product_id.product_name}}</td>
-                            <td>{{o.quantity}}</td>
-                            <td>{{o.total_amount}}</td>
-                            <td>{{o.order_date}}</td>
-                            <td>{{o.shipping_address}}</td>
-                            <td>{{o.status}}</td>
-                            
-                            
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <img src="{{ o.product_id.product_image.url }}" height="250px">
+                                    </td>
+                                    <td>{{ o.product_id.product_name }}</td>
+                                    <td>{{ o.quantity }}</td>
+                                    <td>{{ o.total_amount }}</td>
+                                    <td>{{ o.order_date }}</td>
+                                    <td>{{ o.shipping_address }}</td>
+                                    <td>{{ o.status }}</td>
+                                </tr>
                             {% endfor %}
                         </thead>
                     </table>

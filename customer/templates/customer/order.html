@@ -17,29 +17,27 @@
                 <div class="col-lg-3"></div>
                 <form method='POST'>
                     {% csrf_token %}
-                <div class="col-lg-6">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{product.product_image.url}}" class="card-img-top" alt="..." height="100px">
-                        <div class="card-body">
-                            <p class="card-text">
-                               {{product.description}}
-                            </p>
+                    <div class="col-lg-6">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ product.product_image.url }}"
+                                 class="card-img-top"
+                                 alt="..."
+                                 height="100px">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {{ product.description }}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <label for="" class="mt-5">Select Quantity</label>
-                <input type="number" name="quantity" min="1" max="{{product.stock}}">
-                
-                
-                  
-                <!-- shipping address -->
-                <label for="" class="mt-5">Shipping Address</label>
-                <input type="textarea" cols="30" rows="5" name="address" style="width: 90%;">
-
-                <button>Submit</button>
-            </form>
+                    <label for="" class="mt-5">Select Quantity</label>
+                    <input type="number" name="quantity" min="1" max="{{ product.stock }}">
+                    <!-- shipping address -->
+                    <label for="" class="mt-5">Shipping Address</label>
+                    <input type="textarea" cols="30" rows="5" name="address" style="width: 90%;">
+                    <button>Submit</button>
+                </form>
                 <div class="col-lg-3"></div>
-
             </div>
         </div>
     </body>
