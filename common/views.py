@@ -1,5 +1,7 @@
 from email import message
+from email.policy import EmailPolicy
 from webbrowser import get
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 
 from common.forms import CustomerRegForm
@@ -51,20 +53,26 @@ def customer_reg(request):
     msg = ""
     form = CustomerRegForm()
     if request.method == 'POST':
-        name = request.POST['name']
-        email = request.POST['email']
-        phone_no = request.POST['phone']
-        password = request.POST['password']
-        email_exist = Customer.objects.filter(email_id=email).exists()
+        form=CustomerRegForm(request.POST) #,request.files  if files need to upload
+        if form.is_valid():
+            name = request.POST['cust_name']
+            email = request.POST['email_id']
+            phone_no = request.POST['phone_no']
+            password = request.POST['password']
+            email_exist = Customer.objects.filter(email_id=email).exists()
 
-        if not email_exist:
-            new_customer = Customer(
-                cust_name=name, email_id=email, phone_no=phone_no, password=password)
-            new_customer.save()
-            msg = 'Registered succesfully'
+            if not email_exist:
+                new_customer = Customer(
+                    cust_name=name, email_id=email, phone_no=phone_no, password=password)
+                new_customer.save()
+                form=CustomerRegForm()
+                msg = 'Registered succesfully'
+
+            else:
+                msg = "email already exist"
 
         else:
-            msg = "email already exist"
+            print(form.errors)
 
     # {'msg': msg, } for massage passing
     return render(request, 'customer_reg.html', {'msg': msg,'form':form })
@@ -114,3 +122,25 @@ def seller_login(request):
             return render(request, 'seller_login.html', {'msg': msg, })
 
     return render(request, 'seller_login.html')
+
+
+def check_seller_email(request):
+    email = request.GET['email']    #get method
+    seller_exist = Seller.objects.filter(
+            email_id=email).exists()
+    if seller_exist:
+        status=True
+    else:
+        status = False
+    return JsonResponse({'status':status,'email':email})
+
+
+
+def check_customer_email(request):
+    email = request.POST['email']         #post method
+    customer_exists = Customer.objects.filter(email_id=email).exists()
+    if customer_exists:
+        status = True
+    else:
+        status = False
+    return JsonResponse({'status':status,'email':email})
