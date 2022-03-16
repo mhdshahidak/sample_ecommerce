@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'customer',
     'owner',
     'seller',
+    'state',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,6 +65,7 @@ TEMPLATES = [
             BASE_DIR/'customer/templates/customer',
             BASE_DIR/'seller/templates/seller',
             BASE_DIR/'owner/templates/owner',
+            BASE_DIR/'state/templates/state',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
