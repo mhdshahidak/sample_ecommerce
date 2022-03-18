@@ -3,6 +3,8 @@ from email.policy import EmailPolicy
 from webbrowser import get
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
+from rest_framework.decorators import api_view  # for api connection
+from rest_framework.response import Response    # for api response
 
 from common.forms import CustomerRegForm
 from . models import *
@@ -145,3 +147,24 @@ def check_customer_email(request):
     else:
         status = False
     return JsonResponse({'status': status, 'email': email})
+
+#api connectio
+
+@api_view(['GET', 'POST'])
+def apifn(request):
+    if request.method == 'POST':
+
+
+        # data = request.data
+        # print(data['username'])
+        # username = data['username']
+        # password = data['password']
+
+        # app = Apiusers(user_name=username,password=password) inserting data into database
+        # app.save()
+
+        # serial
+
+        return Response({'status':'data entered successfully',})
+    else:
+        return Response({'name':'shd', 'username':'shd@gmail.com'})

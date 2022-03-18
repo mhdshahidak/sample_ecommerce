@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'owner',
     'seller',
     'state',
+    'rest_framework',  # for api connection
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

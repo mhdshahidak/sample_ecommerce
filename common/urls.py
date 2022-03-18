@@ -13,4 +13,6 @@ urlpatterns = [
     path('checkselleremail', views.check_seller_email, name="checksellermail"),
     path('checkcustomeremail', views.check_customer_email,
          name="checkcustomeremail"),
+
+    path('apicon', views.apifn, name='apicon'),
 ]

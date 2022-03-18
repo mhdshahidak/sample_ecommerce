@@ -29,3 +29,11 @@ class Seller(models.Model):  # inherit from Model class
 
     class Meta:
         db_table = "seller"
+
+
+class Apiusers(models.Model):
+    user_name = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
+
+    class Meta:
+        db_table = "apiuser"
